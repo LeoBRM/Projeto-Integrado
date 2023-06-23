@@ -1,10 +1,10 @@
 # Projeto-Integrado
 Projeto Integradc com as seguintes Materias: banco de dados construção de software
 
-# *Nome e Matricula*
-##Leonardo Borin Mantelmacher, 202305459
-###Gabriel Dazzi, 202305414
-####Enzo Souza, 202305668
+# *Nome e Matricula:
+-Leonardo Borin Mantelmacher, 202305459
+-Gabriel Dazzi, 202305414
+-Enzo Souza, 202305668
 ##
 
 
