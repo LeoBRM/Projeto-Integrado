@@ -13,7 +13,7 @@ Projeto Integradc com as seguintes Materias: banco de dados, construção de sof
 - Susiléa Abreu dos Santos Lima
 
 
-### Sobre o PI
+### Sobre o PI :
 Projeto Integrado entre as 3 materias que consite em combinar as 3 disciplinas junto aos 3 professores em um trabalho demostrando como ficaria todo o Processo de criação
 
 - UX:
