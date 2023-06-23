@@ -10,7 +10,7 @@ Projeto Integradc com as seguintes Materias: banco de dados, construção de sof
 ## Professores:
 - Abrantes Araujo Silva Filho
 - Otavio Lube dos Santos
-- Otavio Lube dos Santos
+- Susiléa Abreu dos Santos Lima
 
 
 ### Sobre o PI
