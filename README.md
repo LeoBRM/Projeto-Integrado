@@ -23,7 +23,7 @@ Projeto Integrado entre as 3 materias que consite em combinar as 3 disciplinas j
   : Criamos um modelo conceitual do projeto e o traduzimos para o modelo lógico utilizando a ferramenta Power Architect. Em seguida, colocamos o modelo no servidor de disciplinas UVV por meio de um script.
 
 - Desenvolvimento Web:
-: Utilizamos os protótipos criados na disciplina de UX para desenvolver as páginas do projeto****
+: Utilizamos os protótipos criados na disciplina de UX para desenvolver as páginas do projeto
 
 
 
