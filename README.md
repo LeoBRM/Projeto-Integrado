@@ -5,6 +5,7 @@ Projeto Integradc com as seguintes Materias: banco de dados, construção de sof
 - Leonardo Borin Mantelmacher, 202305459
 - Gabriel Dazzi, 202305414
 - Enzo Souza, 202305668
+- Arthur Rueda, 202308630
 
 ## Professores:
 - Abrantes Araujo Silva Filho
