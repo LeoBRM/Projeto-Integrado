@@ -16,13 +16,13 @@ Projeto Integradc com as seguintes Materias: banco de dados, construção de sof
 Projeto Integrado entre as 3 materias que consite em combinar as 3 disciplinas junto aos 3 professores em um trabalho demostrando como ficaria todo o Processo de criação
 
 - UX:
-  Criação guia de estilo e um protótipo navegável que representa fielmente o design proposto.
+  #Criação guia de estilo e um protótipo navegável que representa fielmente o design proposto.
 
 - Banco De Dados:
-  Criamos um modelo conceitual do projeto e o traduzimos para o modelo lógico utilizando a ferramenta Power Architect. Em seguida, colocamos o modelo no servidor de disciplinas UVV por meio de um script.
+  #Criamos um modelo conceitual do projeto e o traduzimos para o modelo lógico utilizando a ferramenta Power Architect. Em seguida, colocamos o modelo no servidor de disciplinas UVV por meio de um script.
 
--Desenvolvimento Web:
-Utilizamos os protótipos criados na disciplina de UX para desenvolver as páginas do projeto****
+- Desenvolvimento Web:
+#Utilizamos os protótipos criados na disciplina de UX para desenvolver as páginas do projeto****
 
 
 
