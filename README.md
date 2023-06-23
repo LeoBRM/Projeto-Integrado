@@ -27,7 +27,7 @@ Utilizamos os protótipos criados na disciplina de UX para desenvolver as págin
 
 
 
-Arquivos que estão dentro do pset:
+### Arquivos que estão dentro do pset:
 - cc1ma_202305459_postgresql.architect
 : Este é um arquivo que possui a estrutura do Architect onde pode-se gerar o código para Postgress de uma forma mais fácil para ser implemente no script.
 
