@@ -1,1 +1,248 @@
+CREATE TABLE fortes.Candidato (
+                Id_Candidato VARCHAR(10) NOT NULL,
+                CPF VARCHAR(11) NOT NULL,
+                Aprovado BOOLEAN NOT NULL,
+                Descricao VARCHAR(255) NOT NULL,
+                Email VARCHAR(100) NOT NULL,
+                Porfolio_path VARCHAR NOT NULL,
+                Genero CHAR(1) NOT NULL,
+                Telefone VARCHAR(11) NOT NULL,
+                Experincia_prof VARCHAR(255) NOT NULL,
+                Formacao_academica VARCHAR(30) NOT NULL,
+                Hobbies VARCHAR(255),
+                CONSTRAINT candidato_pk PRIMARY KEY (Id_Candidato)
+);
 
+
+CREATE UNIQUE INDEX candidato_idx
+ ON fortes.Candidato
+ ( CPF );
+
+CREATE TABLE fortes.Profissional (
+                ID_prof INTEGER NOT NULL,
+                Id_Candidato VARCHAR(10) NOT NULL,
+                Num_matricula INTEGER NOT NULL,
+                Id_Grupo INTEGER NOT NULL,
+                Cargo VARCHAR NOT NULL,
+                Funcao VARCHAR NOT NULL,
+                Tempo_funcao_anos INTEGER NOT NULL,
+                Inicio_atividade DATE NOT NULL,
+                Id_Supervisor INTEGER NOT NULL,
+                CONSTRAINT profissional_pk PRIMARY KEY (ID_prof)
+);
+
+
+CREATE UNIQUE INDEX profissional_idx
+ ON fortes.Profissional
+ ( Num_matricula );
+
+CREATE TABLE fortes.Fornecedor_materia_prima (
+                Id_Forn_ INTEGER NOT NULL,
+                Nome VARCHAR(60) NOT NULL,
+                CNPJ CHAR(14) NOT NULL,
+                Razao_Social VARCHAR(60) NOT NULL,
+                Telefone CHAR(14) NOT NULL,
+                Email VARCHAR(20) NOT NULL,
+                qtd_mt INTEGER NOT NULL,
+                custo_mt REAL NOT NULL,
+                ID_prof INTEGER NOT NULL,
+                CONSTRAINT fornecedor_materia_prima_pk PRIMARY KEY (Id_Forn_)
+);
+
+
+CREATE TABLE fortes.End_Forn (
+                Id_Forn_ INTEGER NOT NULL,
+                Cidade VARCHAR(15) NOT NULL,
+                Estado VARCHAR(12) NOT NULL,
+                Bairro VARCHAR(15) NOT NULL,
+                CEP CHAR(8) NOT NULL,
+                Complemento VARCHAR(150),
+                CONSTRAINT end_forn_pk PRIMARY KEY (Id_Forn_)
+);
+
+
+CREATE TABLE fortes.Produto (
+                Id_produto INTEGER NOT NULL,
+                Id_Forn_ INTEGER NOT NULL,
+                Produto VARCHAR(30) NOT NULL,
+                tipo VARCHAR(100) NOT NULL,
+                data_fabricacao DATE NOT NULL,
+                qtd INTEGER NOT NULL,
+                CONSTRAINT produto_pk PRIMARY KEY (Id_produto)
+);
+
+
+CREATE TABLE fortes.Cliente (
+                Id_Cliente INTEGER NOT NULL,
+                Nome VARCHAR NOT NULL,
+                Sobrenome VARCHAR NOT NULL,
+                Telefone VARCHAR(11) NOT NULL,
+                Genero CHAR(1) NOT NULL,
+                RG CHAR(12) NOT NULL,
+                Email VARCHAR(30) NOT NULL,
+                ID_prof INTEGER NOT NULL,
+                CONSTRAINT cliente_pk PRIMARY KEY (Id_Cliente)
+);
+
+
+CREATE TABLE fortes.Endereco_cliente (
+                Id_Cliente INTEGER NOT NULL,
+                Cidade VARCHAR(15) NOT NULL,
+                Estado CHAR(2) NOT NULL,
+                Bairro VARCHAR(15) NOT NULL,
+                CEP CHAR(8) NOT NULL,
+                Complemento VARCHAR(20),
+                CONSTRAINT endereco_cliente_pk PRIMARY KEY (Id_Cliente)
+);
+
+
+CREATE TABLE fortes.Pedido (
+                Id_Pedido INTEGER NOT NULL,
+                ID_prof INTEGER NOT NULL,
+                Id_Cliente INTEGER NOT NULL,
+                data_pedido DATE NOT NULL,
+                CONSTRAINT pedido_pk PRIMARY KEY (Id_Pedido)
+);
+
+
+CREATE TABLE fortes.Itens_Venda (
+                ID_item_venda INTEGER NOT NULL,
+                Id_Pedido INTEGER NOT NULL,
+                Id_produto INTEGER NOT NULL,
+                CONSTRAINT itens_venda_pk PRIMARY KEY (ID_item_venda)
+);
+
+
+CREATE TABLE fortes.Projetos (
+                Id_projeto INTEGER NOT NULL,
+                ID_prof INTEGER NOT NULL,
+                nome_proj VARCHAR NOT NULL,
+                Tema VARCHAR NOT NULL,
+                CONSTRAINT projetos_pk PRIMARY KEY (Id_projeto)
+);
+
+
+CREATE TABLE fortes.Grupo (
+                Id_Grupo INTEGER NOT NULL,
+                Id_projeto INTEGER NOT NULL,
+                CONSTRAINT grupo_pk PRIMARY KEY (Id_Grupo)
+);
+
+
+CREATE TABLE fortes.Endereco_profissional (
+                ID_prof INTEGER NOT NULL,
+                Rua VARCHAR NOT NULL,
+                Bairro VARCHAR NOT NULL,
+                Complemento VARCHAR NOT NULL,
+                Cidade VARCHAR NOT NULL,
+                Estado VARCHAR NOT NULL,
+                CEP VARCHAR NOT NULL,
+                Numero VARCHAR NOT NULL,
+                CONSTRAINT endereco_profissional_pk PRIMARY KEY (ID_prof)
+);
+
+
+ALTER TABLE fortes.Profissional ADD CONSTRAINT candidato_profissional_fk
+FOREIGN KEY (Id_Candidato)
+REFERENCES fortes.Candidato (Id_Candidato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Endereco_profissional ADD CONSTRAINT profissional_endereco_fk
+FOREIGN KEY (ID_prof)
+REFERENCES fortes.Profissional (ID_prof)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Projetos ADD CONSTRAINT profissional_projetos_fk
+FOREIGN KEY (ID_prof)
+REFERENCES fortes.Profissional (ID_prof)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Pedido ADD CONSTRAINT profissional_vendas_fk
+FOREIGN KEY (ID_prof)
+REFERENCES fortes.Profissional (ID_prof)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Cliente ADD CONSTRAINT profissional_cliente_fk
+FOREIGN KEY (ID_prof)
+REFERENCES fortes.Profissional (ID_prof)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Profissional ADD CONSTRAINT profissional_profissional_fk
+FOREIGN KEY (Id_Supervisor)
+REFERENCES fortes.Profissional (ID_prof)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Fornecedor_materia_prima ADD CONSTRAINT profissional_fornecedor_materia_prima_fk
+FOREIGN KEY (ID_prof)
+REFERENCES fortes.Profissional (ID_prof)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Produto ADD CONSTRAINT fornecedor_materia_prima_produto_fk
+FOREIGN KEY (Id_Forn_)
+REFERENCES fortes.Fornecedor_materia_prima (Id_Forn_)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.End_Forn ADD CONSTRAINT fornecedor_materia_prima_end_forn_fk
+FOREIGN KEY (Id_Forn_)
+REFERENCES fortes.Fornecedor_materia_prima (Id_Forn_)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Itens_Venda ADD CONSTRAINT produto_itens_venda_fk
+FOREIGN KEY (Id_produto)
+REFERENCES fortes.Produto (Id_produto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Endereco_cliente ADD CONSTRAINT cliente_endereco_cliente_fk
+FOREIGN KEY (Id_Cliente)
+REFERENCES fortes.Cliente (Id_Cliente)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Pedido ADD CONSTRAINT endereco_cliente_vendas_fk
+FOREIGN KEY (Id_Cliente)
+REFERENCES fortes.Endereco_cliente (Id_Cliente)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Itens_Venda ADD CONSTRAINT pedido_itens_venda_fk
+FOREIGN KEY (Id_Pedido)
+REFERENCES fortes.Pedido (Id_Pedido)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Grupo ADD CONSTRAINT projetos_grupo_fk
+FOREIGN KEY (Id_projeto)
+REFERENCES fortes.Projetos (Id_projeto)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE fortes.Profissional ADD CONSTRAINT grupo_profissional_fk
+FOREIGN KEY (Id_Grupo)
+REFERENCES fortes.Grupo (Id_Grupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
